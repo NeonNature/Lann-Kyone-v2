@@ -90,26 +90,26 @@ body {
 </head>
 <body id="app">
   <nav class="navbar navbar-dark fixed-top">
-      <span id="toptitle" class="text-light mx-auto">
+      <b id="toptitle" class="text-light mx-auto">
          Route
-      </span>
+      </b>
   </nav>
     <nav class="fixed-bottom ">
        <ul class="nav nav-navpills nav-justified">
     <li class="nav-item"  id="n1">
-      <a class="nav-link" data-toggle="pill" href="#route"><i class="fa fa-map-marker activepill"></i></a>
+      <a class="nav-link" data-toggle="pill" href="#route"><i class="fa fa-map-marker activepill text-warning"></i></a>
     </li>
     <li class="nav-item"  id="n2">
-      <a class="nav-link" data-toggle="pill" href="#calendar"><i class="fa fa-calendar"></i></a>
+      <a class="nav-link" data-toggle="pill" href="#calendar"><i class="fa fa-calendar text-info"></i></a>
     </li>
     <li class="nav-item" id="main">
-      <a class="nav-link" data-toggle="pill" href="#dash"><i class="fa fa-th-large"></i></a>
+      <a class="nav-link" data-toggle="pill" href="#dash"><i class="fa fa-th-large text-danger"></i></a>
     </li>
     <li class="nav-item"  id="n3">
-      <a class="nav-link" data-toggle="pill" href="#inbox"><i class="fa fa-commenting-o"></i></a>
+      <a class="nav-link" data-toggle="pill" href="#inbox"><i class="fa fa-commenting-o text-info"></i></a>
     </li>
     <li class="nav-item"  id="n4">
-      <a class="nav-link" data-toggle="pill" href="#barz"><i class="fa fa-navicon"></i></a>
+      <a class="nav-link" data-toggle="pill" href="#barz"><i class="fa fa-navicon text-warning"></i></a>
     </li>
   </ul>
   </nav>
@@ -343,14 +343,14 @@ body {
    <img src="https://avatarfiles.alphacoders.com/477/47.jpg
 " class="rounded-circle pp d-block mx-auto" alt="Profile Picture">
 
-<div class="text-center">
-<p id="phone">+959 123456789</p>
-<p id="organization">ducksquad@quack.com</p>
+<div class="text-center mt-3">
+<i class="text-light" id="phone">+959 123456789</i>
+<p class="text-light" id="organization">ducksquad@quack.com</p>
 </div>
 <button type="button" class="btn btn-outline-danger btn-block mt-3">Logout</button>
-<hr />
+<hr /><br /><br />
 <div class="text-center">
-<h5>Connected Apps</h5>
+<h5 class="text-light">Connected Apps</h5><br />
 <i class="fa fa-facebook-square text-primary mr-3" style="font-size:24px;"></i>
 <i class="fa fa-twitter text-secondary mr-3" style="font-size:24px"></i>
 <i class="fa fa-reddit text-secondary mr-3" style="font-size:24px"></i>
