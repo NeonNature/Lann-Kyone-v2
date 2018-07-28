@@ -371,6 +371,8 @@ $( document ).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+
 });
 
 $('#n1').click(function()
@@ -435,14 +437,14 @@ $('#n1').click(function()
           if(data.status==0)
           {
             var content='<div class="card" id="c1"> <div class="card-body"><div class="card-text">Your booking is submitted. Please get ready to ride.</div><div class="float-left"></div></div>';
-            contentshtml.html(content+contents);
+            contentshtml.html(content);
           }
           else if(data.status==1)
           {
             var startarr=data.start.split(',');
             var endarr=data.end.split(',');
             var content='<div class="card" id="c1"> <div class="card-body"><div class="card-text">Your booking from '+startarr[0]+' to '+endarr[0]+' is ready. Please get ready to ride.</div><div class="float-left"></div></div>';
-            contentshtml.html(content+contents);
+            contentshtml.html(content);
           }
       });
 

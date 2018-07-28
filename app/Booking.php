@@ -9,4 +9,5 @@ class Booking extends Model
     protected $fillable = [
         'start', 'end', 'time','status','price','user_id'
     ];
+    
 }

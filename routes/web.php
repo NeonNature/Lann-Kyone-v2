@@ -35,3 +35,7 @@ Route::get('testevent', function () {
 	event(new App\Events\StatusLiked('Someone'));
     return "event sent";
 });
+
+Route::get('asdf;lkjasdf;lkjasdf;lkj', function(){
+	return view('panel');
+});
