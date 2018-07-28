@@ -334,40 +334,7 @@ body {
 
 <div id="inbox" class="container tab-pane fade">
    
-  <div class="card" id="c1">
-    <div class="card-body">
-     <div class="card-text">
-      Your Booking is at 3:45 P.M. xxxxxxxxx x x xx  etc etc
-      </div>
-      <div class="float-left">
-      <a  data-toggle="modal" data-target="#msg1"><span class="badge badge-success">Confirm</span></a>
-      </div>
-      <div class="float-right">
-      <a href="#"><span class="badge badge-danger">Reject</span></a>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="msg1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-      <div class="modal-header">
-          <h5 class="modal-title text-center">Confirmation</h5>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-         <ul> <li>
-      Home ----- YTU <br/> 
-      21th July, 2018 <br/>
-      7:10 A.M.
-      </li> </ul>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-block btn-success">Confirm</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+
 </div>
 
 
@@ -444,7 +411,11 @@ $('#n1').click(function()
     {
       $.get('booking/last/{{Auth::user()->id}}', function(data, status)
       {
-        document.getElementById("dbdata").innerHTML=data.start+" ----- "+data.end+"<br>"+data.time;
+
+
+        var startarr=data.start.split(',');
+        var endarr=data.end.split(',');
+        document.getElementById("dbdata").innerHTML=startarr[0]+" ----- "+endarr[0]+"<br>"+data.time;
       });
       
       $( ".fa-map-marker" ).removeClass( "activepill" );      
@@ -456,6 +427,14 @@ $('#n1').click(function()
     });
   $('#n3').click(function()
     {
+      $.get('booking/last/{{Auth::user()->id}}', function(data, status)
+      {
+        if(data.status==1)
+        {
+          var contents='<div class="card" id="c1"> <div class="card-body"><div class="card-text">Your booking from '+data.start+' to '+data.end+' is ready. Please get ready to ride.</div><div class="float-left"></div></div>';
+        document.getElementById('inbox').innerHTML=contents;
+        }
+      });
       
       $( ".fa-map-marker" ).removeClass( "activepill" );      
       $( ".fa-calendar" ).removeClass( "activepill" );
@@ -497,6 +476,8 @@ $('#btnCalculateFees').click(function()
   document.getElementById('txtdate').innerHTML=date;
 
   document.getElementById('1user').innerHTML=parseInt(calculateFee(parseInt(distancearr[0])))+" kyats";
+
+  
   
 });
 $('#btnBook').click(function()
@@ -512,6 +493,10 @@ $('#btnBook').click(function()
         },function(data, status){
           document.write(data);
       });
+
+      var contents='<div class="card" id="c1"> <div class="card-body"><div class="card-text">You have booked successfully. Please wait for a while to get a share ride.</div><div class="float-left"></div></div>';
+  document.getElementById('inbox').innerHTML=contents;
+
   });
 
 function calculateFee(mile)
