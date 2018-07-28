@@ -53,7 +53,7 @@
 </script>
 
 </head>
-<body>
+<body class="bg-dark">
 
   <div class="container">
   @if ($errors->any())
