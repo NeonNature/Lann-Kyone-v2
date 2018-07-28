@@ -86,17 +86,15 @@ body {
   width: 150px; 
     height: 150px;
 }
-    
-    
   </style>
 </head>
 <body id="app">
   <nav class="navbar navbar-dark fixed-top">
-      <span id="toptitle" class=" text-dark mx-auto">
+      <span id="toptitle" class="text-light mx-auto">
          Route
       </span>
   </nav>
-    <nav class="fixed-bottom">
+    <nav class="fixed-bottom ">
        <ul class="nav nav-navpills nav-justified">
     <li class="nav-item"  id="n1">
       <a class="nav-link" data-toggle="pill" href="#route"><i class="fa fa-map-marker activepill"></i></a>
@@ -150,7 +148,7 @@ body {
           <div id="total"></div>
           <div id="map"></div>
           <div class="d-flex ef mx-auto">
-         <a class="btn btn-outline-success w-100" id="btnCalculateFees" data-toggle="modal" href="#calc">Calculate Fees</a>
+         <a class="btn btn-outline-success mt-3 w-100" id="btnCalculateFees" data-toggle="modal" href="#calc">Calculate Fees</a>
       </div>
         </div>
         
