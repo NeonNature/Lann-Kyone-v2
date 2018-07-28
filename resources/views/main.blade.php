@@ -38,13 +38,8 @@
 background-color: transparent;
 color:white;
 }
-.bgr, .ftt {
-background-image: linear-gradient(to right, #434343 0%, black 100%);
-color:white;
-}
+
 .bgr, .eff {
- 
-    
     border-color: transparent;
 }
 .navbar {
@@ -54,11 +49,11 @@ color:white;
   width:200px;    
 }
 .eff {
-  background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
    margin: 0 5px 0 5px;
 }
 .lecontent {
-height:200px;
+height:100%; 
+margin-bottom:30px;
 }
 #map {
   height: 100%;
@@ -73,6 +68,11 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden; 
+    background: url(images/bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
     
 .ci1{      
@@ -123,7 +123,7 @@ body {
     <div id="route" class="container tab-pane active">
   <form action="booking" method="POST">
     <div class="form-group">
-      <div class="border p-1 rounded ftt">
+      <div class="border p-1 rounded">
         <input type="hidden" name="_token" value={{csrf_token()}}>
         <input type="hidden" id="routeDistance" value="">
         <input type="text" class="form-control ft border-left-0 border-right-0 border-top-0" id="origin-input" name="start" placeholder="From">
@@ -131,9 +131,8 @@ body {
       </div>
     </div>
         <div class="d-flex" role="group">
-         <input type="text" placeholder="Time" id="time" name="time" class="btn bgr btn-light w-100 col-4"  onfocus="(this.type='time')" onblur="if(!this.value)this.type='text'">
-        <input type="text" placeholder="Date" id="trio2date" name="date" class="btn bgr btn-light w-100 col-4"  onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
-        <input type="text" placeholder="To-Do" id="trio3todo" class="btn bgr btn-light w-100 col-4">
+         <input type="text" placeholder="Time" id="time" name="time" class="btn bgr btn-light w-100 col-6"  onfocus="(this.type='time')" onblur="if(!this.value)this.type='text'">
+        <input type="text" placeholder="Date" id="trio2date" name="date" class="btn bgr btn-light w-100 col-6"  onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
       </div><br>
       @if (\Session::has('errors'))
       <div class="alert alert-danger">
@@ -151,11 +150,14 @@ body {
         <div class="lecontent mt-1 mb-1">
           <div id="total"></div>
           <div id="map"></div>
+          <div class="d-flex ef mx-auto">
+         <a class="btn eff btn-light w-100" id="btnCalculateFees" data-toggle="modal" href="#calc">Calculate Fees</a>
+      </div>
         </div>
         
         
         <div class="d-flex ef mx-auto">
-         <a class="btn eff btn-light w-100" id="btnCalculateFees" data-toggle="modal" href="#calc">Calculate Fees</a>
+         <a class="btn eff btn-outline-success w-100" id="btnCalculateFees" data-toggle="modal" href="#calc">Calculate Fees</a>
       </div>
         
         <div class="modal fade" id="calc">
