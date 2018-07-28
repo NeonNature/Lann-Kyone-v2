@@ -39,7 +39,7 @@ background-color: transparent;
 color:white;
 }
 
-.bgr, .eff {
+.bgr {
     border-color: transparent;
 }
 .navbar {
@@ -52,8 +52,7 @@ color:white;
    margin: 0 5px 0 5px;
 }
 .lecontent {
-height:100%; 
-margin-bottom:30px;
+height:200px;
 }
 #map {
   height: 100%;
@@ -151,14 +150,12 @@ body {
           <div id="total"></div>
           <div id="map"></div>
           <div class="d-flex ef mx-auto">
-         <a class="btn eff btn-light w-100" id="btnCalculateFees" data-toggle="modal" href="#calc">Calculate Fees</a>
+         <a class="btn btn-outline-success w-100" id="btnCalculateFees" data-toggle="modal" href="#calc">Calculate Fees</a>
       </div>
         </div>
         
         
-        <div class="d-flex ef mx-auto">
-         <a class="btn eff btn-outline-success w-100" id="btnCalculateFees" data-toggle="modal" href="#calc">Calculate Fees</a>
-      </div>
+        
         
         <div class="modal fade" id="calc">
     <div class="modal-dialog modal-dialog-centered">
