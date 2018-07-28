@@ -51,7 +51,7 @@ class UserController extends Controller
         User::create($user);
 
         //return back()->with('success','Verification mail sent. Check your mail and verify your account.');
-        return redirect('mentee/login')->with('status', 'User account created successfully');
+        return redirect('login')->with('status', 'User account created successfully');
     }
 
     public function login()

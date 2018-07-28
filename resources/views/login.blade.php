@@ -9,7 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="bg-dark">
 	@if (\Session::has('errors'))
       <div class="alert alert-danger">
          <p>{{ \Session::get('errors') }}</p>

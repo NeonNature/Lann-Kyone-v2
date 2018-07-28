@@ -53,7 +53,7 @@
 </script>
 
 </head>
-<body>
+<body class="bg-dark">
 
   <div class="container">
   @if ($errors->any())
@@ -86,8 +86,8 @@
       <input type="radio" name="gender" value="0"> Female
     </label>
           <input type="tel" class="form-control mt-2" id="phone" placeholder="Phone number" name="phone" required />
-          <input type="password" class="form-control mt-2" id="pwd1" placeholder="Password" name="pwd1" required />
-          <input type="password" class="form-control mt-2" id="pwd2" placeholder="Confirm password" name="pwd2" required />
+          <input type="password" class="form-control mt-2" id="pwd1" placeholder="Password" name="password" required />
+          <input type="password" class="form-control mt-2" id="pwd2" placeholder="Confirm password" name="confirmPassword" required />
           <button type="submit" class="btn shadow btn-outline-success btn-block mt-2" name="ssubmit">Register</button>
         </div>
       </div>
