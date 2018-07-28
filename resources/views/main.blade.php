@@ -179,16 +179,16 @@ body {
          <hr />
          <div class="row text-center">
   <div class="card col-3 bg-light text-dark">
-    <span id="1user" class="card-text"><i class="fa fa-user"></i><br />2500</span>
+    <span class="card-text"><i class="fa fa-user"></i><br /><p id="1user">2500</p></span>
   </div>
   <div class="card col-3 bg-light text-dark">
-    <span class="card-text"><i class="fa fa-user"></i><i class="fa fa-user"></i><br />2500</span>
+    <span class="card-text"><i class="fa fa-user"></i><i class="fa fa-user"></i><br /><p id="2user">2500</p></span>
   </div>
   <div class="card col-3 bg-light text-dark">
-    <span class="card-text"><i class="fa fa-user"></i><i class="fa fa-user"></i><i class="fa fa-user"></i><br />2500</span>
+    <span class="card-text"><i class="fa fa-user"></i><i class="fa fa-user"></i><i class="fa fa-user"></i><br /><p id="3user">2500</p></span>
   </div>
   <div class="card col-3 bg-light text-dark">
-    <span class="card-text"><i class="fa fa-user" style="font-size:12px"></i><i class="fa fa-user" style="font-size:12px"></i><i class="fa fa-user" style="font-size:12px"></i><i class="fa fa-user" style="font-size:12px"></i><br />2500</span>
+    <span class="card-text"><i class="fa fa-user" style="font-size:12px"></i><i class="fa fa-user" style="font-size:12px"></i><i class="fa fa-user" style="font-size:12px"></i><i class="fa fa-user" style="font-size:12px"></i><br /><p id="4user">2500</p></span>
   </div>
   </div>
          
@@ -333,8 +333,7 @@ body {
 
 
 <div id="inbox" class="container tab-pane fade">
-   
-
+  <div></div>
 </div>
 
 
@@ -379,7 +378,12 @@ $( document ).ready(function() {
 
 $('#n1').click(function()
     {
-      
+      var today=new Date();
+      var date=today.getDate();
+      var month=today.getMonth()+1;
+      var year=today.getFullYear();
+      document.getElementById('trio2date').value=date+'/'+month+'/'+year;
+
       $( ".fa-map-marker" ).addClass( "activepill" );      
       $( ".fa-calendar" ).removeClass( "activepill" );
       $( ".fa-th-large" ).removeClass( "activepill" );
@@ -427,12 +431,23 @@ $('#n1').click(function()
     });
   $('#n3').click(function()
     {
+      var htmlcontent=$('#inbox');
+      var htmlrealcontents=document.getElementById('inbox').innerHTML;
+      console.log(htmlrealcontents);
       $.get('booking/last/{{Auth::user()->id}}', function(data, status)
       {
         if(data.status==1)
         {
-          var contents='<div class="card" id="c1"> <div class="card-body"><div class="card-text">Your booking from '+data.start+' to '+data.end+' is ready. Please get ready to ride.</div><div class="float-left"></div></div>';
-        document.getElementById('inbox').innerHTML=contents;
+          var startarr=data.start.split(',');
+          var endarr=data.end.split(',');
+          var contents='<div class="card" id="c1"> <div class="card-body"><div class="card-text">Your booking from '+startarr[0]+' to '+endarr[0]+' is ready. Please get ready to ride.</div><div class="float-left"></div></div>';
+        htmlcontent.html(htmlrealcontents+contents);
+        console.log(document.getElementById('inbox'));
+        }
+        else
+        {
+          var contents='<p>You have no new notifications.</p>';
+          document.getElementById('inbox').innerHTML=htmlrealcontents;
         }
       });
       
@@ -474,34 +489,47 @@ $('#btnCalculateFees').click(function()
   document.getElementById('txtend').innerHTML=endarr[0];
   document.getElementById('txttime').innerHTML=time.toString();
   document.getElementById('txtdate').innerHTML=date;
+  var cost=parseInt(calculateFee(parseInt(distancearr[0])));
+  cost=Math.round(cost/100)*100;
 
-  document.getElementById('1user').innerHTML=parseInt(calculateFee(parseInt(distancearr[0])))+" kyats";
+  document.getElementById('1user').innerHTML=cost+" MMK";
+  document.getElementById('2user').innerHTML=Math.round(cost/200)*100+ " MMK";
+  document.getElementById('3user').innerHTML=Math.round(cost/300)*100+" MMK";
+  document.getElementById('4user').innerHTML=Math.round(cost/400)*100+" MMK";
 
-  
-  
 });
 $('#btnBook').click(function()
   {
     var start=$("input[name=start]").val();
       var end=$("input[name=end]").val();
       var time=$("input[name=time]").val();
+      var cost=document.getElementById('1user').innerHTML;
+      console.log(parseInt(cost));
       $.post("booking", 
         {
           "start": start,
           "end": end,
-          "time": time
+          "time": time,
+          "price": parseInt(cost)
         },function(data, status){
           document.write(data);
       });
 
       var contents='<div class="card" id="c1"> <div class="card-body"><div class="card-text">You have booked successfully. Please wait for a while to get a share ride.</div><div class="float-left"></div></div>';
   document.getElementById('inbox').innerHTML=contents;
+  console.log(document.getElementById('inbox').innerHTML);
 
   });
 
 function calculateFee(mile)
 {
-  return 1300+(1.60934*mile*300);
+  var cost=1300+(1.60934*mile*300);
+  var cost1=Math.round(cost/100)*100;
+  var cost2=Math.round(cost/200)*100;
+  var cost3=Math.round(cost/300)*100;
+  var cost4=Math.round(cost/400)*100;
+  totalcost=[cost1, cost2, cost3, cost4];
+  return totalcost;
 }
     
 var infowindow;

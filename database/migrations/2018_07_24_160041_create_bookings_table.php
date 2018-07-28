@@ -19,6 +19,7 @@ class CreateBookingsTable extends Migration
             $table->string('end');
             $table->string('time');
             $table->integer('status');
+            $table->integer('price');
             $table->integer('user_id');
             $table->timestamps();
         });

@@ -42,6 +42,7 @@ class BookingController extends Controller
                     'end'=>$data['end'],
                     'time'=>$data['time'],
                     'status'=>0,
+                    'price'=>$data['price'],
                     'user_id'=>Auth::user()->id];
         Booking::create($booking);
         return redirect('/')->with('status','Your booking is submitted. Please wait for a while for us to complete booking');
