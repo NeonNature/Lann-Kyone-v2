@@ -371,6 +371,25 @@ $( document ).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+   var htmlcontent=$('#inbox');
+      var htmlrealcontents=document.getElementById('inbox').innerHTML;
+      console.log(htmlrealcontents);
+      $.get('booking/last/{{Auth::user()->id}}', function(data, status)
+      {
+        if(data.status==1)
+        {
+          var startarr=data.start.split(',');
+          var endarr=data.end.split(',');
+          var contents='<div class="card" id="c1"> <div class="card-body"><div class="card-text">Your booking from '+startarr[0]+' to '+endarr[0]+' is ready. Please get ready to ride.</div><div class="float-left"></div></div>';
+        htmlcontent.html(htmlrealcontents+contents);
+        console.log(document.getElementById('inbox'));
+        }
+        else
+        {
+          var contents='<p>You have no new notifications.</p>';
+          document.getElementById('inbox').innerHTML=htmlrealcontents;
+        }
+      });
 });
 
 $('#n1').click(function()
@@ -428,25 +447,6 @@ $('#n1').click(function()
     });
   $('#n3').click(function()
     {
-      var htmlcontent=$('#inbox');
-      var htmlrealcontents=document.getElementById('inbox').innerHTML;
-      console.log(htmlrealcontents);
-      $.get('booking/last/{{Auth::user()->id}}', function(data, status)
-      {
-        if(data.status==1)
-        {
-          var startarr=data.start.split(',');
-          var endarr=data.end.split(',');
-          var contents='<div class="card" id="c1"> <div class="card-body"><div class="card-text">Your booking from '+startarr[0]+' to '+endarr[0]+' is ready. Please get ready to ride.</div><div class="float-left"></div></div>';
-        htmlcontent.html(htmlrealcontents+contents);
-        console.log(document.getElementById('inbox'));
-        }
-        else
-        {
-          var contents='<p>You have no new notifications.</p>';
-          document.getElementById('inbox').innerHTML=htmlrealcontents;
-        }
-      });
       
       $( ".fa-map-marker" ).removeClass( "activepill" );      
       $( ".fa-calendar" ).removeClass( "activepill" );
