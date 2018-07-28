@@ -64,6 +64,11 @@ class BookingController extends Controller
         return $last;
     }
 
+    public function getBookings($id)
+    {
+        $bookings=Booking::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+        return $bookings;
+    }
     /**
      * Show the form for editing the specified resource.
      *

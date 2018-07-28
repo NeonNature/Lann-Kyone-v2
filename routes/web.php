@@ -28,6 +28,7 @@ Route::post('user/login','UserController@loginAuth');
 Route::resource('user','UserController');
 
 Route::get('booking/last/{id}', 'BookingController@getLastBooking');
+Route::get('booking/{id}', 'BookingController@getBookings');
 Route::resource('booking', 'BookingController');
 
 Route::get('testevent', function () {

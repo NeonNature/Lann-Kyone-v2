@@ -148,7 +148,7 @@ body {
           <div id="total"></div>
           <div id="map"></div>
           <div class="d-flex ef mx-auto">
-         <a class="btn btn-outline-success mt-3 w-100" id="btnCalculateFees" data-toggle="modal" href="#calc">Calculate Fees</a>
+         <a class="btn btn-success mt-3 w-100" id="btnCalculateFees" data-toggle="modal" href="#calc">Calculate Fees</a>
       </div>
         </div>
         
@@ -192,7 +192,7 @@ body {
         </div>
         <div class="modal-footer">
           <button type="button" id="btnBook" class="btn btn-block btn-success">Confirm</button>
-          <button type="button" class="btn btn-block btn-danger">Cancel</button>
+          <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Cancel</button>
         </div>
         
       </div>
@@ -371,25 +371,6 @@ $( document ).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-   var htmlcontent=$('#inbox');
-      var htmlrealcontents=document.getElementById('inbox').innerHTML;
-      console.log(htmlrealcontents);
-      $.get('booking/last/{{Auth::user()->id}}', function(data, status)
-      {
-        if(data.status==1)
-        {
-          var startarr=data.start.split(',');
-          var endarr=data.end.split(',');
-          var contents='<div class="card" id="c1"> <div class="card-body"><div class="card-text">Your booking from '+startarr[0]+' to '+endarr[0]+' is ready. Please get ready to ride.</div><div class="float-left"></div></div>';
-        htmlcontent.html(htmlrealcontents+contents);
-        console.log(document.getElementById('inbox'));
-        }
-        else
-        {
-          var contents='<p>You have no new notifications.</p>';
-          document.getElementById('inbox').innerHTML=htmlrealcontents;
-        }
-      });
 });
 
 $('#n1').click(function()
@@ -447,7 +428,24 @@ $('#n1').click(function()
     });
   $('#n3').click(function()
     {
-      
+      $.get('booking/last/{{Auth::user()->id}}', function(data, status)
+      {
+          var contentshtml=$('#inbox');
+          var contents=$('#inbox').html();
+          if(data.status==0)
+          {
+            var content='<div class="card" id="c1"> <div class="card-body"><div class="card-text">Your booking is submitted. Please get ready to ride.</div><div class="float-left"></div></div>';
+            contentshtml.html(content+contents);
+          }
+          else if(data.status==1)
+          {
+            var startarr=data.start.split(',');
+            var endarr=data.end.split(',');
+            var content='<div class="card" id="c1"> <div class="card-body"><div class="card-text">Your booking from '+startarr[0]+' to '+endarr[0]+' is ready. Please get ready to ride.</div><div class="float-left"></div></div>';
+            contentshtml.html(content+contents);
+          }
+      });
+
       $( ".fa-map-marker" ).removeClass( "activepill" );      
       $( ".fa-calendar" ).removeClass( "activepill" );
       $( ".fa-th-large" ).removeClass( "activepill" );
@@ -511,10 +509,6 @@ $('#btnBook').click(function()
         },function(data, status){
           document.write(data);
       });
-
-      var contents='<div class="card" id="c1"> <div class="card-body"><div class="card-text">You have booked successfully. Please wait for a while to get a share ride.</div><div class="float-left"></div></div>';
-  document.getElementById('inbox').innerHTML=contents;
-  console.log(document.getElementById('inbox').innerHTML);
 
   });
 
